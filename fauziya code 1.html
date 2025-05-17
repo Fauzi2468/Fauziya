@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Grid Time Series Forecast</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h2>Smart Grid Load Forecast - Time Series Pattern</h2>
+    <div id="forecastChart" style="width:100%;max-width:900px;height:500px;"></div>
+
+    <script>
+        // Example Time Series Data (historical load)
+        const historicalData = {
+            x: ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01'],
+            y: [1200, 1300, 1250, 1400, 1500],
+            mode: 'lines+markers',
+            name: 'Historical Load',
+            line: { color: 'blue' }
+        };
+
+        // Example Forecast Data (predicted load)
+        const forecastData = {
+            x: ['2025-06-01', '2025-07-01', '2025-08-01', '2025-09-01'],
+            y: [1550, 1600, 1620, 1580],
+            mode: 'lines+markers',
+            name: 'Forecasted Load',
+            line: { dash: 'dot', color: 'green' }
+        };
+
+        // Confidence Interval (forecast range)
+        const forecastRange = {
+            x: ['2025-06-01', '2025-07-01', '2025-08-01', '2025-09-01', '2025-09-01', '2025-08-01', '2025-07-01', '2025-06-01'],
+            y: [1500, 1550, 1570, 1530, 1630, 1670, 1650, 1600],
+            fill: 'toself',
+            fillcolor: 'rgba(0,255,0,0.2)',
+            line: {color: 'transparent'},
+            name: 'Forecast Range',
+            showlegend: true
+        };
+
+        const layout = {
+            title: 'Smart Grid Load Forecast (Time Series)',
+            xaxis: { title: 'Date' },
+            yaxis: { title: 'Load (MW)' }
+        };
+
+        Plotly.newPlot('forecastChart', [historicalData, forecastData, forecastRange], layout);
+    </script>
+</body>
+</html>
